@@ -1,0 +1,58 @@
+﻿@model GigHub.ViewModels.GigFormViewModel  
+@using GigHub.Views.Gigs
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h2>@Resource1.Title</h2>
+
+<a href="#" id="Notification_BTN_Action" ntype="info" msg="" title="" hidden="hidden"></a>
+
+@using (Html.BeginForm("Create","Gigs",FormMethod.Post,htmlAttributes:new { id="frmAddGig"}))
+{
+    @Html.AntiForgeryToken()
+    <p class="alert alert-info">All Fileds are <strong>Required</strong>.</p>
+    <div class="form-group">
+        @Html.LabelFor(model=>model.Venue)
+        @Html.TextBoxFor(model=>model.Venue,new { @class="form-control" , autofocus = "autofocus" })
+        @Html.ValidationMessageFor(model => model.Venue)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model=>model.Date)
+        @Html.TextBoxFor(model=>model.Date,new { @class="form-control" ,placeholder="eg 1 jan 2015"})
+        @Html.ValidationMessageFor(model => model.Date)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Time)
+        @Html.TextBoxFor(model => model.Time, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Time)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Genre)
+        @Html.DropDownListFor(model => model.Genre, new SelectList(Model.Genres, "Id", "Name", "other"), "...",new { @class="form-control"})
+        @Html.ValidationMessageFor(model => model.Genre)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.amount)
+        @Html.TextBoxFor(model=>model.amount ,new  { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.amount)
+    </div>
+    
+    <div class="form-group">
+        <input type="submit" value="@Resource1.btnSave"  class="btn btn-primary"/>
+    </div>
+
+}
+
+@section scripts
+{
+    <script>
+        function show()
+        {
+            
+        }
+    </script>
+
+}

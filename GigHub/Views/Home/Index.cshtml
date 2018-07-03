@@ -1,0 +1,117 @@
+﻿@model GigHub.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<h4>Up comming Gigs</h4>
+<ul class="gigs">
+    @foreach (var item in Model.UpComingGigs)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @item.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @item.DateTime.ToString("d ")
+                @*</div>*@
+            </div>
+            <div class="detials">
+                <span class="artist">
+                
+                    @item.Artist.Name  
+                @if (Model.ShowActions)
+                {
+
+                    <button class="btn btn-link btn-ms js-toggle-follow" data-user-id="@item.Artist.Id">Follow</button>
+                }
+                </span>
+                <span class="genre">
+                    @item.Genre.Name
+                </span>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    var isReseved = Model.userGigs.FirstOrDefault(c => c.GigId == item.ID);
+                    if (isReseved != null)
+                    {
+                        <button data-gig-id="@item.ID" class="btn btn-info btn-sm pull-right js-toggle-attendace">Going</button>
+                    }
+                    else
+                    {
+                        <button data-gig-id="@item.ID" class="btn btn-default btn-sm pull-right js-toggle-attendace">Going ?</button>
+                    }
+
+                }
+            </div>
+
+        </li>
+        @*<li> @item.DateTime - @item.Artist.Name</li>*@
+    }
+</ul>
+
+@section scripts{
+<script>
+  
+    $(".js-toggle-attendace").click(function (event) {
+        var button = $(event.target);
+
+        $.ajax({
+            url: "/api/Attendances",
+            contentType: "application/json",
+            method: "post",
+            data: JSON.stringify({ "gigId": Number(button.attr("data-gig-id")) }),
+            success: function (data, xrh, s) {
+                if (button.hasClass("btn-default"))
+                    button.removeClass("btn-default")
+                        .addClass("btn-info")
+                        .text("Going");
+                else
+                    button.removeClass("btn-info")
+                        .addClass("btn-default")
+                        .text("Going ?");
+
+            },
+            error: function (xrh, status, throwError) {
+                toastr.error(xrh.responseJSON.Message);
+            }
+        });
+
+       
+       
+        //$.post("/api/Attendances", { gigId: Number(button.attr("data-gig-id")) })
+        //    .done(function (data) {
+        //        alert("added")
+        //    })
+        //    .fail(function () {
+        //        alert("Fail");
+        //    });
+
+        //$.post("/api/Attendances", { "gigId": button.attr("data-gig-id") } ,
+        //    (data, textStatus, XHR) => {
+        //        alert(data);
+        //        if (textStatus == 200)
+        //        {
+        //            button.removeClass("btn-default")
+        //                .addClass("btn-info")
+        //                .text("Going");
+        //        }
+
+    });
+
+
+    $(".js-toggle-follow").on("click", function (event) {
+        
+        var $this = this;
+        var artistID = $(this).attr("data-user-id");
+        $.post("/api/Follow", { "FolloweeId": artistID })
+            .done(function (data) {
+                $($this).text("Following");
+                alert(data);
+            })
+            .fail(function () {
+                alert("fail");
+            });
+    });
+
+</script>
+    
+}

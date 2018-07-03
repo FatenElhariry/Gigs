@@ -1,0 +1,121 @@
+﻿@model GigHub.ViewModels.GigViewModel
+@{
+    ViewBag.Title = "Gigs Page";
+}
+<h4>@Model.Heading</h4>
+<div class="input-group input-group-lg" style="margin-bottom:20px;">
+    <span class="input-group-addon" id="sizing-addon1">
+        <i class="glyphicon glyphicon-search"></i>
+    </span>
+    <input type="text" class="form-control" placeholder="Search by Artist,Genre and Location ..." aria-describedby="sizing-addon1">
+</div>
+
+<ul class="gigs">
+    @foreach (var item in Model.UpComingGigs)
+    {
+        <li>
+            <div class="date">
+                <div class="month" id="@item.ID">
+                    @item.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @item.DateTime.ToString("d ")
+                    @*</div>*@
+                </div>
+                <div class="detials">
+                    <span class="artist">
+
+                        @item.Artist.Name
+                        @if (Model.ShowActions)
+                        {
+
+                            <button class="btn btn-link btn-ms js-toggle-follow" data-user-id="@item.Artist.Id">Follow</button>
+                        }
+                    </span>
+                    <span class="genre">
+                        @item.Genre.Name
+                    </span>
+                    @if (Model.ShowActions == true)
+                    {
+                        <button data-gig-id="@item.ID"  class="btn @(Model.Attendances.Contains(item.ID) ? "btn-info" : "btn-default") btn-sm pull-right js-toggle-attendace">
+                            @(Model.Attendances.Contains(item.ID) ? "Going" : "Going ?") 
+                        </button>
+                    }
+                </div>
+
+            </div>
+
+        </li>
+        
+    }
+</ul>
+    
+@section scripts{
+    <script>
+        GigController.Init();
+    //$(".js-toggle-attendace").click(function (event) {
+    //    var button = $(event.target);
+    //    var method = "Post";
+    //    if (!button.hasClass("btn-default"))
+    //        method = "DELETE";
+    //    $.ajax({
+    //        url: "/api/Attendances",
+    //        contentType: "application/json",
+    //        method: method,
+    //        data: JSON.stringify({ "gigId": Number(button.attr("data-gig-id")) }),
+    //        success: function (data, xrh, s) {
+    //            if (button.hasClass("btn-default"))
+    //                button.removeClass("btn-default")
+    //                    .addClass("btn-info")
+    //                    .text("Going");
+    //            else
+    //                button.removeClass("btn-info")
+    //                    .addClass("btn-default")
+    //                    .text("Going ?");
+
+    //        },
+    //        error: function (xrh, status, throwError) {
+    //            toastr.error(xrh.responseJSON.Message);
+    //        }
+    //    });
+
+
+
+    //    //$.post("/api/Attendances", { gigId: Number(button.attr("data-gig-id")) })
+    //    //    .done(function (data) {
+    //    //        alert("added")
+    //    //    })
+    //    //    .fail(function () {
+    //    //        alert("Fail");
+    //    //    });
+
+    //    //$.post("/api/Attendances", { "gigId": button.attr("data-gig-id") } ,
+    //    //    (data, textStatus, XHR) => {
+    //    //        alert(data);
+    //    //        if (textStatus == 200)
+    //    //        {
+    //    //            button.removeClass("btn-default")
+    //    //                .addClass("btn-info")
+    //    //                .text("Going");
+    //    //        }
+
+    //});
+
+
+    $(".js-toggle-follow").on("click", function (event) {
+
+        var $this = this;
+        var artistID = $(this).attr("data-user-id");
+        $.post("/api/Follow", { "FolloweeId": artistID })
+            .done(function (data) {
+                $($this).text("Following");
+                alert(data);
+            })
+            .fail(function () {
+                alert("fail");
+            });
+    });
+
+    </script>
+
+}
