@@ -8,11 +8,11 @@
     @Model.Gig.Artist.Name
     @if (Model.IsFollowing)
     {
-        <button class="btn btn-link btn-ms btn-info js-toggle-follow" data-user-id="@Model.Gig.Artist.Id">Following</button>
+        <button class="btn  btn-ms btn-info js-toggle-follow" data-user-id="@Model.Gig.Artist.Id">Following</button>
     }
     else
     {
-        <button class="btn btn-link btn-ms btn-default js-toggle-follow" data-user-id="@Model.Gig.Artist.Id">Follow</button>
+        <button class="btn  btn-ms btn-default js-toggle-follow" data-user-id="@Model.Gig.Artist.Id">Follow</button>
     }
 </h2>
 <p>
@@ -21,6 +21,66 @@
 
 @if (User.Identity.IsAuthenticated && Model.IsAttending)
 {
-    <p>You are Attending</p>
+    <p>You are going to this event</p>
 }
 
+
+@section scripts{
+    <script>
+        var FollowService = (function () {
+            var FollowArtist = function(artistID,done,fail) {
+                $.post("/api/Follow", { "FolloweeId": artistID })
+                    .done(done)
+                    .fail(fail);
+            }
+
+            var DeleteFollow = function (artistID, done, fail) {
+                $.ajax({
+                    url: "/api/Follow?artistID=" + artistID,
+                    method: "Delete",
+                    dataType: "application/json",
+                    success: done,
+                    error: fail
+                })
+            }
+            return {
+                FollowArtist: FollowArtist,
+                DeleteFollow: DeleteFollow
+            }
+
+        })();
+
+        var FollowController = (function () {
+            var button;
+            var init = function () {
+                $(".js-toggle-follow").on("click", toggleFollow);
+            }
+
+            var toggleFollow = function () {
+                debugger
+                button = this;
+                var artistID = $(this).attr("data-user-id");
+                if ($(this).hasClass("btn-default"))
+                    FollowService.FollowArtist(artistID, done, fail);
+                else
+                    FollowService.DeleteFollow(artistID, done, fail);
+               
+            }
+
+            var done = function () {
+                var text = ($(button).text() == "Follow" ? "Following" : "Follow");
+                $(button).toggleClass("btn-default").
+                    toggleClass("btn-info").
+                    text(text);
+            }
+
+            var fail = function () {
+                toastr.error("Something wrong happend");
+            }
+
+            return { Init: init }
+        })().Init();
+       
+
+    </script>
+}

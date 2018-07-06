@@ -25,7 +25,7 @@
                 <div class="detials">
                     <span class="artist">
 
-                        @item.Artist.Name
+                        <a href="@Url.Action("Details","Gigs",new { gigId = item.ID })" >@item.Artist.Name</a>
                         @if (Model.ShowActions)
                         {
 

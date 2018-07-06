@@ -70,6 +70,12 @@ namespace GigHub.Controllers
 
             
         }
+        //public IHttpActionResult Delete (string artistId)
+        //{
+
+        //    return Ok();
+        //}
+
 
         // PUT: api/Follow/5
         public void Put(int id, [FromBody]string value)
@@ -77,8 +83,21 @@ namespace GigHub.Controllers
         }
 
         // DELETE: api/Follow/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(string artistID)
         {
+            string userID = User.Identity.GetUserId();
+            var follow = _context.Followings.
+                                  FirstOrDefault(c => c.FolloweeId == artistID &&
+                                                c.FollowerId == userID);
+            if (follow == null)
+                return Content(System.Net.HttpStatusCode.NotFound, "this follow are not found");
+            else
+            {
+                _context.Followings.Remove(follow);
+                _context.SaveChanges();
+                return Ok();
+            }
+
         }
     }
 }
