@@ -294,64 +294,64 @@
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Dtos\AttendaceDto.cs" />
+    <Compile Include="core\Dtos\AttendaceDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803160812255_initial-migration.cs" />
-    <Compile Include="Migrations\201803160812255_initial-migration.Designer.cs">
+    <Compile Include="Presistence\Migrations\201803160812255_initial-migration.cs" />
+    <Compile Include="Presistence\Migrations\201803160812255_initial-migration.Designer.cs">
       <DependentUpon>201803160812255_initial-migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803160816157_Add_genre.cs" />
-    <Compile Include="Migrations\201803160816157_Add_genre.Designer.cs">
+    <Compile Include="Presistence\Migrations\201803160816157_Add_genre.cs" />
+    <Compile Include="Presistence\Migrations\201803160816157_Add_genre.Designer.cs">
       <DependentUpon>201803160816157_Add_genre.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803162142358_AddNameToApplicationUser.cs" />
-    <Compile Include="Migrations\201803162142358_AddNameToApplicationUser.Designer.cs">
+    <Compile Include="Presistence\Migrations\201803162142358_AddNameToApplicationUser.cs" />
+    <Compile Include="Presistence\Migrations\201803162142358_AddNameToApplicationUser.Designer.cs">
       <DependentUpon>201803162142358_AddNameToApplicationUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803240654245_AddAttendance.cs" />
-    <Compile Include="Migrations\201803240654245_AddAttendance.Designer.cs">
+    <Compile Include="Presistence\Migrations\201803240654245_AddAttendance.cs" />
+    <Compile Include="Presistence\Migrations\201803240654245_AddAttendance.Designer.cs">
       <DependentUpon>201803240654245_AddAttendance.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803241406003_AddFollowers.cs" />
-    <Compile Include="Migrations\201803241406003_AddFollowers.Designer.cs">
+    <Compile Include="Presistence\Migrations\201803241406003_AddFollowers.cs" />
+    <Compile Include="Presistence\Migrations\201803241406003_AddFollowers.Designer.cs">
       <DependentUpon>201803241406003_AddFollowers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807010815049_AddCancelGig.cs" />
-    <Compile Include="Migrations\201807010815049_AddCancelGig.Designer.cs">
+    <Compile Include="Presistence\Migrations\201807010815049_AddCancelGig.cs" />
+    <Compile Include="Presistence\Migrations\201807010815049_AddCancelGig.Designer.cs">
       <DependentUpon>201807010815049_AddCancelGig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807211310515_AddAttendances.cs" />
-    <Compile Include="Migrations\201807211310515_AddAttendances.Designer.cs">
+    <Compile Include="Presistence\Migrations\201807211310515_AddAttendances.cs" />
+    <Compile Include="Presistence\Migrations\201807211310515_AddAttendances.Designer.cs">
       <DependentUpon>201807211310515_AddAttendances.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Attendance.cs" />
-    <Compile Include="Models\Following.cs" />
-    <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\Gig.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Presistence\IUnitOfWork.cs" />
+    <Compile Include="Presistence\Migrations\Configuration.cs" />
+    <Compile Include="core\Models\AccountViewModels.cs" />
+    <Compile Include="Presistence\ApplicationDbContext.cs" />
+    <Compile Include="core\Models\Attendance.cs" />
+    <Compile Include="core\Models\Following.cs" />
+    <Compile Include="core\Models\Genre.cs" />
+    <Compile Include="core\Models\Gig.cs" />
+    <Compile Include="core\Models\ApplicationUser.cs" />
+    <Compile Include="core\Models\ManageViewModels.cs" />
+    <Compile Include="core\IUnitOfWork.cs" />
     <Compile Include="Presistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\AttendaceRepository.cs" />
-    <Compile Include="Repositories\FollowingRepository.cs" />
-    <Compile Include="Repositories\GenresRepository.cs" />
-    <Compile Include="Repositories\GigRepository.cs" />
-    <Compile Include="Repositories\IAttendaceRepository.cs" />
-    <Compile Include="Repositories\IFollowingRepository.cs" />
-    <Compile Include="Repositories\IGenresRepository.cs" />
-    <Compile Include="Repositories\IGigRepository.cs" />
+    <Compile Include="Presistence\Repositories\AttendaceRepository.cs" />
+    <Compile Include="Presistence\Repositories\FollowingRepository.cs" />
+    <Compile Include="Presistence\Repositories\GenresRepository.cs" />
+    <Compile Include="Presistence\Repositories\GigRepository.cs" />
+    <Compile Include="core\Repositories\IAttendaceRepository.cs" />
+    <Compile Include="core\Repositories\IFollowingRepository.cs" />
+    <Compile Include="core\Repositories\IGenresRepository.cs" />
+    <Compile Include="core\Repositories\IGigRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validation\FutureDate.cs" />
-    <Compile Include="ViewModels\GigDetailsViewModel.cs" />
-    <Compile Include="ViewModels\GigFormViewModel.cs" />
-    <Compile Include="ViewModels\GigViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="core\ViewModels\GigDetailsViewModel.cs" />
+    <Compile Include="core\ViewModels\GigFormViewModel.cs" />
+    <Compile Include="core\ViewModels\GigViewModel.cs" />
+    <Compile Include="core\ViewModels\HomeViewModel.cs" />
     <Compile Include="Views\Gigs\Resource1.ar-eg.Designer.cs">
       <DependentUpon>Resource1.ar-eg.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -452,25 +452,25 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803160812255_initial-migration.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201803160812255_initial-migration.resx">
       <DependentUpon>201803160812255_initial-migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803160816157_Add_genre.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201803160816157_Add_genre.resx">
       <DependentUpon>201803160816157_Add_genre.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803162142358_AddNameToApplicationUser.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201803162142358_AddNameToApplicationUser.resx">
       <DependentUpon>201803162142358_AddNameToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803240654245_AddAttendance.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201803240654245_AddAttendance.resx">
       <DependentUpon>201803240654245_AddAttendance.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803241406003_AddFollowers.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201803241406003_AddFollowers.resx">
       <DependentUpon>201803241406003_AddFollowers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807010815049_AddCancelGig.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201807010815049_AddCancelGig.resx">
       <DependentUpon>201807010815049_AddCancelGig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807211310515_AddAttendances.resx">
+    <EmbeddedResource Include="Presistence\Migrations\201807211310515_AddAttendances.resx">
       <DependentUpon>201807211310515_AddAttendances.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Gigs\Resource1.ar-eg.resx">

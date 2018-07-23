@@ -1,6 +1,7 @@
-﻿using GigHub.Models;
-using GigHub.Repositories;
-
+﻿using GigHub.core;
+using GigHub.core.Repositories;
+using GigHub.Presistence.Models;
+using GigHub.Presistence.Repositories;
 namespace GigHub.Presistence
 {
     public class UnitOfWork : IUnitOfWork
