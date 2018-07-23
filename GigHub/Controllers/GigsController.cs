@@ -9,9 +9,13 @@ using System.Web.Mvc;
 
 namespace GigHub.Controllers
 {
+    /// <summary>
+    /// controller doesn't contain any refrence to applicationdbcontext 
+    ///     it 
+    /// </summary>
     public class GigsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        
         #region ugly nosie code 
         /*
          * here this class will be very depandancy to all repository on the 
@@ -23,17 +27,17 @@ namespace GigHub.Controllers
         private readonly FollowingRepository _followingRepository;*/
         #endregion
 
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public GigsController()
         {
-            _context = new ApplicationDbContext();
+            
             #region No Need For This 
             //_gigRepository = new GigRepository(_context);
             //_attendaceRepository = new AttendaceRepository(_context);
             //_followingRepository = new FollowingRepository(_context);
             #endregion
-            _unitOfWork = new UnitOfWork(_context);
+            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
         }
 
         public ActionResult index(string query=null)
@@ -58,8 +62,8 @@ namespace GigHub.Controllers
                 Heading = "Upcoming Gig ",
                 SearchTerm = query,
                 Attendances = _unitOfWork.Attendaces.GetFutureAttandance(userId).
-                                                    ToLookup(g => g.GigId);
-                        /*_attendaceRepository.GetFutureAttandance(userId).
+                                                    ToLookup(g => g.GigId)
+                             /*_attendaceRepository.GetFutureAttandance(userId).
                                        ToLookup(g => g.GigId)*/
             };
 
@@ -72,14 +76,14 @@ namespace GigHub.Controllers
         {
             string userId = User.Identity.GetUserId();
 
-            var gig = _gigRepository.GetGig(gigId);
+            var gig = /*_gigRepository*/_unitOfWork.Gigs.GetGig(gigId);
                                
             GigDetailsViewModel model = new GigDetailsViewModel()
             {
                 Gig = gig,
-                IsAttending = _attendaceRepository.GetAttendance(gigId,userId) != null,/*_context.Attendances.
+                IsAttending = /*_attendaceRepository*/_unitOfWork.Attendaces.GetAttendance(gigId,userId) != null,/*_context.Attendances.
                                        Any(a => a.AttendeeId == userId && a.GigId == gigId),*/
-                IsFollowing = _followingRepository.GetFollowing(userId,gig.ArtistId) != null/*_context.Followings.
+                IsFollowing = /*_followingRepository*/_unitOfWork.Followings.GetFollowing(userId,gig.ArtistId) != null/*_context.Followings.
                                         Any(f => f.FollowerId == userId && f.FolloweeId == gig.Artist.Id)*/
             };
             return View(model);
@@ -91,10 +95,10 @@ namespace GigHub.Controllers
 
             GigViewModel model = new GigViewModel()
             {
-                UpComingGigs = _gigRepository.GetGigUserAttendance(userId),
+                UpComingGigs = /*_gigRepository*/_unitOfWork.Gigs.GetGigUserAttendance(userId),
                 ShowActions = false,
                 Heading = "Gigs I'm Attending",
-                Attendances = _attendaceRepository.GetFutureAttandance(userId).
+                Attendances = /*_attendaceRepository*/_unitOfWork.Attendaces.GetFutureAttandance(userId).
                                        ToLookup(g => g.GigId)
             };
             return View("Gigs",model);
@@ -105,7 +109,7 @@ namespace GigHub.Controllers
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel() {
-                Genres =_context.Genres.ToList()
+                Genres = _unitOfWork.Genres.GetGenres()
             };
             return View(viewModel);
         }
@@ -120,17 +124,17 @@ namespace GigHub.Controllers
             //var author = _context.Users.Single(c => c.Id == AutherId);
             if (!ModelState.IsValid)
             {
-                model.Genres = _context.Genres.ToList();
+                model.Genres = _unitOfWork.Genres.GetGenres();
                 return View("create", model);
             }
-            var gig = _context.Gigs.Add(new Gig()
+            var gig = new Gig()
             {
                 DateTime = model.DateTime,
                 ArtistId = AutherId ,
                 GenreId = model.Genre,
                 Venue = model.Venue
-            });
-            _gigRepository.Add(gig);
+            };
+            /*_gigRepository*/_unitOfWork.Gigs.Add(gig);
             _unitOfWork.Complete();
             //_context.Gigs.Add(gig);
             //_context.SaveChanges();
@@ -146,7 +150,7 @@ namespace GigHub.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            _context.Dispose();
+            
             base.Dispose(disposing);
 
         }

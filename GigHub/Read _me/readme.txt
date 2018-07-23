@@ -30,3 +30,15 @@ Repository :		unit of worke
 	- Add()
 					
 	
+dependency inversion principle ::
+	high level module should not dependence on low level module 
+	both should depend on abstractions 
+
+
+
+	controller :: high level 
+	unit of work :: low level 
+	controller is depends on unit of work if you change the unit of work the controller 
+	need to be changed 
+
+	abstration should not depend on details 
