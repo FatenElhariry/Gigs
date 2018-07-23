@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-namespace GigHub.ViewModels
+namespace GigHub.core.ViewModels
 {
     public class GigFormViewModel
     {

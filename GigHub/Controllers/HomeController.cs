@@ -1,6 +1,6 @@
-﻿using GigHub.Presistence.Models;
-using GigHub.Presistence.Repositories;
-using GigHub.ViewModels;
+﻿using GigHub.core;
+using GigHub.core.ViewModels;
+using GigHub.Presistence;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,14 +9,15 @@ namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly GigRepository _gigRepository;
-        private readonly AttendaceRepository _attendaceRepository;
-        public HomeController()
+          private readonly IUnitOfWork _unitOfWork;
+    //    private readonly GigRepository _gigRepository;
+    //    private readonly AttendaceRepository _attendaceRepository;
+        public HomeController(UnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
-            _gigRepository = new GigRepository(_context);
-            _attendaceRepository = new AttendaceRepository(_context);
+            _unitOfWork = unitOfWork;
+            
+        //    _gigRepository = new GigRepository(_context);
+        //    _attendaceRepository = new AttendaceRepository(_context);
         }
         public ActionResult Index(string query = null)
         {
@@ -28,7 +29,7 @@ namespace GigHub.Controllers
              _context.Gigs.Include(g => g.Artist.UserName).Where(g => g.DateTime > DateTime.Now).ToList();
              it will get the username with the query 
              */
-            var upComingGig = _gigRepository.GetFutureGig();
+            var upComingGig = _unitOfWork.Gigs.GetFutureGig();
 
             if (!string.IsNullOrWhiteSpace(query))
             {
@@ -75,7 +76,8 @@ namespace GigHub.Controllers
 
             GigViewModel viewModel = new GigViewModel() {
                 UpComingGigs = upComingGig,
-                Attendances = _attendaceRepository.GetFutureAttandance(userId).ToLookup(g => g.GigId),
+                Attendances = _unitOfWork.Attendaces.
+                                GetFutureAttandance(userId).ToLookup(g => g.GigId),
                 Heading = "Upcoming Gigs",
                 ShowActions = User.Identity.IsAuthenticated,
                 SearchTerm = query

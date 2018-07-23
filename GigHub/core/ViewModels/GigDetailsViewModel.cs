@@ -1,6 +1,6 @@
 ﻿using GigHub.core.Models;
 
-namespace GigHub.ViewModels
+namespace GigHub.core.ViewModels
 {
     public class GigDetailsViewModel
     {
