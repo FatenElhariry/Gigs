@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,6 +29,8 @@ namespace GigHub.Models
 
         [ForeignKey("ArtistId")]
         public virtual ApplicationUser Artist { get; set; }
+
+        public virtual List<Attendance> Attendances { get; set; }
     }
 
 }

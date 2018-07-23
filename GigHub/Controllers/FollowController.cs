@@ -86,6 +86,7 @@ namespace GigHub.Controllers
         public IHttpActionResult Delete(string artistID)
         {
             string userID = User.Identity.GetUserId();
+
             var follow = _context.Followings.
                                   FirstOrDefault(c => c.FolloweeId == artistID &&
                                                 c.FollowerId == userID);
@@ -95,9 +96,8 @@ namespace GigHub.Controllers
             {
                 _context.Followings.Remove(follow);
                 _context.SaveChanges();
-                return Ok();
             }
-
+            return Ok();
         }
     }
 }

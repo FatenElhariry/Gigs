@@ -297,6 +297,10 @@
     <Compile Include="Migrations\201807010815049_AddCancelGig.Designer.cs">
       <DependentUpon>201807010815049_AddCancelGig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807211310515_AddAttendances.cs" />
+    <Compile Include="Migrations\201807211310515_AddAttendances.Designer.cs">
+      <DependentUpon>201807211310515_AddAttendances.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -307,6 +311,9 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AttendaceRepository.cs" />
+    <Compile Include="Repositories\FollowingRepository.cs" />
+    <Compile Include="Repositories\GigRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Validation\FutureDate.cs" />
     <Compile Include="ViewModels\GigDetailsViewModel.cs" />
@@ -430,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807010815049_AddCancelGig.resx">
       <DependentUpon>201807010815049_AddCancelGig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807211310515_AddAttendances.resx">
+      <DependentUpon>201807211310515_AddAttendances.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Gigs\Resource1.ar-eg.resx">
       <Generator>ResXFileCodeGenerator</Generator>

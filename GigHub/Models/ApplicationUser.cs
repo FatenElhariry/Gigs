@@ -20,6 +20,8 @@ namespace GigHub.Models
 
         public virtual List<Following> Followees { get; set; }
 
+        public virtual List<Attendance> Attendances { get; set; }
+
         public ApplicationUser()
         {
             Followers = new List<Following>();

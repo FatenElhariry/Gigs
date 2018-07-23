@@ -9,7 +9,8 @@ namespace GigHub.Models
         public virtual ApplicationUser Attendee { get; set; }
 
         [Key]
-        [Column(Order =1)]
+        [Column(name: "GigId", Order =1)]
+
         [ForeignKey("Gig")]
         public int GigId { get; set; }
 

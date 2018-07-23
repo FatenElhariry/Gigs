@@ -32,6 +32,19 @@ namespace GigHub.Models
                  .WithRequired(c=>c.Followee)
                  .HasForeignKey(c => c.FollowerId)
                  .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Gig>().HasKey(c => c.ID).
+                                      HasMany(c => c.Attendances).
+                                      WithRequired(c => c.Gig).
+                                      HasForeignKey(c => c.GigId).
+                                      WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>().HasKey(c => c.Id).
+                                      HasMany(c => c.Attendances).
+                                      WithRequired(c => c.Attendee).
+                                      HasForeignKey(c => c.AttendeeId).
+                                      WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
 

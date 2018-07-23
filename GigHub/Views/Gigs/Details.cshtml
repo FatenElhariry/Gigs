@@ -28,7 +28,7 @@
 @section scripts{
     <script>
         var FollowService = (function () {
-            var FollowArtist = function(artistID,done,fail) {
+            var FollowArtist = function(artistID, done, fail) {
                 $.post("/api/Follow", { "FolloweeId": artistID })
                     .done(done)
                     .fail(fail);
@@ -41,7 +41,7 @@
                     dataType: "application/json",
                     success: done,
                     error: fail
-                })
+                });
             }
             return {
                 FollowArtist: FollowArtist,
@@ -67,7 +67,7 @@
                
             }
 
-            var done = function () {
+            var done = function (data) {
                 var text = ($(button).text() == "Follow" ? "Following" : "Follow");
                 $(button).toggleClass("btn-default").
                     toggleClass("btn-info").
@@ -75,6 +75,7 @@
             }
 
             var fail = function () {
+                debugger
                 toastr.error("Something wrong happend");
             }
 

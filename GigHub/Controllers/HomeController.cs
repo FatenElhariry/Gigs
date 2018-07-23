@@ -1,9 +1,7 @@
 ﻿using GigHub.Models;
+using GigHub.Repositories;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,10 +9,14 @@ namespace GigHub.Controllers
 {
     public class HomeController : Controller
     {
-        ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly GigRepository _gigRepository;
+        private readonly AttendaceRepository _attendaceRepository;
         public HomeController()
         {
             _context = new ApplicationDbContext();
+            _gigRepository = new GigRepository(_context);
+            _attendaceRepository = new AttendaceRepository(_context);
         }
         public ActionResult Index(string query = null)
         {
@@ -26,11 +28,7 @@ namespace GigHub.Controllers
              _context.Gigs.Include(g => g.Artist.UserName).Where(g => g.DateTime > DateTime.Now).ToList();
              it will get the username with the query 
              */
-            var upComingGig = _context.Gigs.
-                 Include(g => g.Artist).
-                 Include(g => g.Genre).
-                 Where(g => g.DateTime > DateTime.Now).
-                 ToList();
+            var upComingGig = _gigRepository.GetFutureGig();
 
             if (!string.IsNullOrWhiteSpace(query))
             {
@@ -44,11 +42,7 @@ namespace GigHub.Controllers
 
             string userId = User.Identity.GetUserId();
 
-            var attendances = _context.Attendances.
-                                        Where(a => a.AttendeeId == userId &&
-                                               a.Gig.DateTime > DateTime.Now).
-                                       ToList().
-                                       ToLookup(g => g.GigId);
+            
             #region MyRegion
             //if (User.Identity.IsAuthenticated)
             //{
@@ -81,7 +75,7 @@ namespace GigHub.Controllers
 
             GigViewModel viewModel = new GigViewModel() {
                 UpComingGigs = upComingGig,
-                Attendances = attendances,
+                Attendances = _attendaceRepository.GetFutureAttandance(userId).ToLookup(g => g.GigId),
                 Heading = "Upcoming Gigs",
                 ShowActions = User.Identity.IsAuthenticated,
                 SearchTerm = query
