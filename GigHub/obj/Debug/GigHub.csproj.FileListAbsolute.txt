@@ -266,3 +266,17 @@ C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.csprojResolveAssemblyReference.cache
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddCancelGig.resources
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddAttendances.resources
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Castle.Core.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Extensions.Conventions.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Extensions.Factory.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Web.Common.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Web.Common.WebHost.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Web.Mvc.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\WebActivatorEx.dll
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.xml
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Extensions.Conventions.xml
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Extensions.Factory.xml
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Web.Common.xml
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Web.Common.WebHost.xml
+C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Ninject.Web.Mvc.xml

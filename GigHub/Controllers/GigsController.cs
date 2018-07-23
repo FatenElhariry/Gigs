@@ -15,7 +15,7 @@ namespace GigHub.Controllers
     /// </summary>
     public class GigsController : Controller
     {
-        
+
         #region ugly nosie code 
         /*
          * here this class will be very depandancy to all repository on the 
@@ -29,15 +29,15 @@ namespace GigHub.Controllers
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public GigsController()
+        public GigsController(UnitOfWork unitOfWork)
         {
-            
+
             #region No Need For This 
             //_gigRepository = new GigRepository(_context);
             //_attendaceRepository = new AttendaceRepository(_context);
             //_followingRepository = new FollowingRepository(_context);
             #endregion
-            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+            _unitOfWork = unitOfWork;//new UnitOfWork(new ApplicationDbContext());
         }
 
         public ActionResult index(string query=null)
