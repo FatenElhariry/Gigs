@@ -3,6 +3,7 @@
 
 namespace GigHub.App_Start
 {
+    using GigHub.core;
     using GigHub.Presistence;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
