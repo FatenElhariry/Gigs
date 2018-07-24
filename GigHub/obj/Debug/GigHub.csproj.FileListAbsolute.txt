@@ -263,7 +263,6 @@ C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\System.Net.Ht
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\System.Web.Http.xml
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\System.Web.Http.WebHost.xml
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddFollowers.resources
-C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.csprojResolveAssemblyReference.cache
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddCancelGig.resources
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\obj\Debug\GigHub.Migrations.AddAttendances.resources
 C:\Users\Faten Elhariry\Source\Workspaces\GigHub\GigHub\GigHub\bin\Castle.Core.dll
